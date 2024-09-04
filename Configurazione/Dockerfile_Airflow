@@ -1,0 +1,32 @@
+FROM apache/airflow:2.3.0
+RUN pip install --upgrade pip 
+RUN pip install tensorflow
+RUN pip install matplotlib
+RUN pip install statsmodels
+RUN pip install numpy
+RUN pip install pandas
+USER root
+WORKDIR /app
+
+COPY . /app
+RUN apt-get -y update  && apt-get install -y \
+  python3-dev \
+  apt-utils \
+  python-dev \
+  build-essential \
+&& rm -rf /var/lib/apt/lists/*
+USER airflow
+RUN pip install --upgrade setuptools
+RUN pip install cython
+RUN pip install numpy
+RUN pip install matplotlib
+RUN pip install pystan==2.18.0.0
+RUN pip install pymeeus ujson korean-lunar-calendar hijri-converter ephem convertdate setuptools-git pystan==2.18.0.0 LunarCalendar holidays cmdstanpy
+RUN pip install prophet
+RUN pip install prometheus-api-client
+
+
+
+
+
+
